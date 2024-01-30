@@ -38,8 +38,5 @@ int main() {
 		sum += GPA * gradescore;
 	}
 
-	//if (GPAsum == 0) // 모든 과목이 F나 P일 경우
-	//	printf(0);
-	//else
-		printf("%f", sum / GPAsum);
+	printf("%f", sum / GPAsum);
 }
