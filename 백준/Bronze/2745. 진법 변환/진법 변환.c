@@ -15,16 +15,14 @@ int main() {
 	len = strlen(N);
 
 	for (int i = 0; i < len; i++) {
-
-			if (('A' <= N[i]) && ('Z' >= N[i])) { // A~Z
-				alphanum = N[i] - '7';
-				sum += alphanum * pow(B,(len - i - 1));
-			}
-			else {	// 0~9
-				alphanum = N[i] - '0';
-				sum += alphanum * pow(B, (len - i - 1));
-			}
-		
+		if (('A' <= N[i]) && ('Z' >= N[i])) { // A~Z
+			alphanum = N[i] - 55; // A는 10으로 alphanum에 저장
+			sum += alphanum * pow(B,(len - i - 1));
+		}
+		else {	// 0~9
+			alphanum = N[i] - '0';
+			sum += alphanum * pow(B, (len - i - 1));
+		}	
 	}
 
 	printf("%d", sum);
