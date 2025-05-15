@@ -1,31 +1,39 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Stack;
-
-// 키포인트: 스택을 사용해 '열려있는' 막대의 개수를 파악
+ 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws NumberFormatException, IOException {
+        // TODO Auto-generated method stub
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        String input = bf.readLine();
         Stack<Character> stack = new Stack<>();
-        Scanner scanner = new Scanner(System.in);
-        String S = scanner.nextLine();
-        
-        int totalNum = 0; // 전체 잘린 막대의 수
-        int stickNum = 0; // 현재 열려있는(절단될 수 있는) 막대의 수
-        
-        for(int i =0; i< S.length(); i++) {
-            if(S.charAt(i) == '('){
-                if(S.charAt(i+1) == ')') {    // 레이저 +()는 무조건 짝을 이루니 i+1한다고 index에러 안 남
-                    totalNum += stickNum;
-                    i++; // 레이저 닫힘')'는 넘어감
+ 
+        int result = 0;
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == '(') { // 열린 괄호면 스택에 추가.
+                stack.push('(');
+                continue;
+            }
+            if (input.charAt(i) == ')') { // 닫힌 괄호일 경우,
+                stack.pop(); // 일단 stack에서 pop을 실행.
+ 
+                if (input.charAt(i - 1) == '(') { // 그 전 괄호가 열린 괄호면 레이저를 의미.
+                    result += stack.size(); // 현재 stack의 사이즈만큼 더해 줌.
+                } else { // 그 전 괄호가 닫힌 괄호면 레이저가 아님.
+                    result++; // 단순히 1을 더해 줌.
                 }
-                else {                      // 나무막대
-                    totalNum++;
-                    stickNum++;
-                }
-            }else { // )인 경우 (나무막대 끝남)
-                stickNum--;
             }
         }
-
-        System.out.print(totalNum);
+ 
+        bw.write(result + "\n");
+        bw.flush();
+        bf.close();
+        bw.close();
     }
 }
+ 
