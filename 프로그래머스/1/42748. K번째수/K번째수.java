@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 class Solution {
-    public List<Integer> solution(int[] array, int[][] commands) {
-        int[] answer = {};
+    public Integer[] solution(int[] array, int[][] commands) {
+        // int[] answer = {}; // 정답 배열의 길이가 정해져 있다면 그냥 배열을 쓰고 길이를 지정하는 것도괜찮
         List<Integer> list = new ArrayList<>();
         
         // for 문으로 범위안의 수들 정렬
@@ -18,9 +18,10 @@ class Solution {
              // i+k번째 수 answer 배열에 추가 
             list.add(copy[(commands[i][0] - 1) + (commands[i][2] - 1)]);
         }
-//         // List arr로 변환
-//         answer =         
+        // List arr로 변환
+        Integer[] answer = {};
+        answer = list.toArray(new Integer[0]);        
         
-        return list;
+        return answer;
     }
 }
