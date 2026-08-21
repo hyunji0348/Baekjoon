@@ -11,9 +11,9 @@ def solution(prices):
         #     새로운애 stack.append
     
     for idx, price in enumerate(prices): 
-        if not stack or price >= stack[-1][1]:
-            stack.append((idx, price))
-        else: # 작은애 들어와서(값 하락) 스택 빼야함
+        # if not stack or price >= stack[-1][1]:
+        #     stack.append((idx, price))
+        # else: # 작은애 들어와서(값 하락) 스택 빼야함
             while(stack and price < stack[-1][1]):
                 answer[stack[-1][0]] = idx - stack[-1][0]
                 stack.pop()
